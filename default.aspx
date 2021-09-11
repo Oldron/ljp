@@ -21,7 +21,7 @@ protected String getPhotos() {
   XmlNodeList xnList = xml.SelectNodes("/livejournal/recent-images/recent-image");
   var cnt = 0;
   foreach (XmlNode xn in xnList) {
-    var hrefImg = xn.Attributes["img"].Value;
+    var hrefImg = xn.Attributes["img"].Value; 
     var hrefUrl = xn.Attributes["url"].Value;
     var sItem = String.Format("<a href=\"{0}\"><img src=\"{1}\" /></a>", hrefUrl, hrefImg);
     sRes += sItem + "<br/>";
