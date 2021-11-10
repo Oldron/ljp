@@ -1,11 +1,14 @@
-<%@ Page Language="C#" %>
+<%@ Page Language="C#" Debug="true" %>
 <%@ Import Namespace="System.Net" %>
+<%@ Import Namespace="System.Net.Security" %>
 <%@ Import Namespace="System.Xml" %>
 <script runat=server>
 
 protected String getPhotos() {
 
-  HttpWebRequest request = WebRequest.Create("http://www.livejournal.com/stats/latest-img.bml") as HttpWebRequest;
+  HttpWebRequest request = WebRequest.Create("https://www.livejournal.com:443/stats/latest-img.bml") as HttpWebRequest;
+  request.Credentials = CredentialCache.DefaultCredentials;
+  ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
   HttpWebResponse response = (HttpWebResponse)request.GetResponse();
   WebHeaderCollection header = response.Headers;
   var encoding = ASCIIEncoding.ASCII;
